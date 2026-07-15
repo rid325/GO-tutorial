@@ -1,0 +1,32 @@
+package main
+
+import "fmt"
+
+func safeDivide(a, b int) (result int, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("recovered from panic: %v", r)
+		}
+	}()
+
+	if b == 0 {
+		panic("division by zero")
+	}
+	return a / b, nil
+}
+
+func showPanicRecover() {
+	result, err := safeDivide(10, 2)
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Result:", result)
+	}
+
+	result, err = safeDivide(10, 0)
+	if err != nil {
+		fmt.Println("Caught panic:", err)
+	} else {
+		fmt.Println("Result:", result)
+	}
+}
