@@ -20,3 +20,13 @@ func validateAge(age int) error {
 	}
 	return nil
 }
+
+func validateName(name string) error {
+	if name == "" {
+		return &ValidationError{Field: "name", Message: "cannot be empty"}
+	}
+	if len(name) > 50 {
+		return &ValidationError{Field: "name", Message: "too long, max 50 chars"}
+	}
+	return nil
+}
