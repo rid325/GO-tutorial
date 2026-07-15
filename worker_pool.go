@@ -4,8 +4,9 @@ import "fmt"
 
 func worker(id int, jobs <-chan int, results chan<- int) {
 	for j := range jobs {
-		results <- j * j
-		fmt.Printf("Worker %d processed job %d\n", id, j)
+		square := j * j
+		results <- square
+		fmt.Printf("Worker %d: job=%d result=%d\n", id, j, square)
 	}
 }
 
