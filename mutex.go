@@ -22,6 +22,12 @@ func (c *SafeCounter) Value() int {
 	return c.count
 }
 
+func (c *SafeCounter) Reset() {
+	c.mu.Lock()
+	c.count = 0
+	c.mu.Unlock()
+}
+
 func showMutex() {
 	counter := &SafeCounter{}
 	var wg sync.WaitGroup
@@ -36,4 +42,6 @@ func showMutex() {
 
 	wg.Wait()
 	fmt.Println("Final count:", counter.Value())
+	counter.Reset()
+	fmt.Println("After reset:", counter.Value())
 }
