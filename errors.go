@@ -28,4 +28,9 @@ func showErrors() {
 	if err != nil {
 		fmt.Println("Caught error:", err)
 	}
+
+	// use errors.Is to check sentinel
+	if errors.Is(err, ErrDivByZero) {
+		fmt.Println("Confirmed: divide by zero error")
+	}
 }
