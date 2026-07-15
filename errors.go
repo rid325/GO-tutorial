@@ -19,4 +19,10 @@ func showErrors() {
 	} else {
 		fmt.Printf("10 / 2 = %.2f\n", result)
 	}
+
+	// test divide by zero
+	_, err = divide(5, 0)
+	if err != nil {
+		fmt.Println("Caught error:", err)
+	}
 }
