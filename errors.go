@@ -5,9 +5,12 @@ import (
 	"fmt"
 )
 
+// ErrDivByZero is a sentinel error for division by zero
+var ErrDivByZero = errors.New("cannot divide by zero")
+
 func divide(a, b float64) (float64, error) {
 	if b == 0 {
-		return 0, errors.New("cannot divide by zero")
+		return 0, ErrDivByZero
 	}
 	return a / b, nil
 }
