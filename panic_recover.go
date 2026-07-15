@@ -14,3 +14,19 @@ func safeDivide(a, b int) (result int, err error) {
 	}
 	return a / b, nil
 }
+
+func showPanicRecover() {
+	result, err := safeDivide(10, 2)
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Result:", result)
+	}
+
+	result, err = safeDivide(10, 0)
+	if err != nil {
+		fmt.Println("Caught panic:", err)
+	} else {
+		fmt.Println("Result:", result)
+	}
+}
